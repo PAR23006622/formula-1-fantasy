@@ -1,4 +1,3 @@
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
 export function Footer() {
   return (
@@ -10,20 +9,6 @@ export function Footer() {
             <p className="text-gray-400 dark:text-gray-500">
               The ultimate Formula 1 fantasy gaming experience
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-purple-400">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-purple-400">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-purple-400">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-purple-400">
-                <Youtube className="h-5 w-5" />
-              </a>
-            </div>
           </div>
           
           <div>
@@ -31,8 +16,8 @@ export function Footer() {
             <ul className="space-y-2">
               <li><a href="/how-to-play" className="text-gray-400 dark:text-gray-500 hover:text-white">How to Play</a></li>
               <li><a href="/rules" className="text-gray-400 dark:text-gray-500 hover:text-white">Rules</a></li>
-              <li><a href="/leaderboard" className="text-gray-400 dark:text-gray-500 hover:text-white">Leaderboard</a></li>
-              <li><a href="/races" className="text-gray-400 dark:text-gray-500 hover:text-white">Race Calendar</a></li>
+              <li><a href="/standings" className="text-gray-400 dark:text-gray-500 hover:text-white">Standings</a></li>
+              <li><a href="/race-calendar" className="text-gray-400 dark:text-gray-500 hover:text-white">Race Calendar</a></li>
             </ul>
           </div>
           

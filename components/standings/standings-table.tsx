@@ -30,8 +30,6 @@ export function StandingsTable() {
               <TableHead className="text-right">Price</TableHead>
               <TableHead className="text-right">Points</TableHead>
               <TableHead className="text-right">Price Change</TableHead>
-              <TableHead className="text-right">Ownership</TableHead>
-              <TableHead className="text-right">Form</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -52,8 +50,6 @@ export function StandingsTable() {
                     <span>{driver.priceChange}M</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-right">{driver.ownership}%</TableCell>
-                <TableCell className="text-right">{driver.form}</TableCell>
               </TableRow>
             ))}
           </TableBody>

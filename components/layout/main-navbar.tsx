@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { motion } from "framer-motion";
 
 export function MainNavbar() {
   const pathname = usePathname();
@@ -44,20 +45,33 @@ export function MainNavbar() {
         )}>
           <div className="hidden md:flex justify-between items-center px-4">
             <ThemeToggle />
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "inline-flex items-center px-6 py-2 text-sm font-medium rounded-full transition-all duration-200",
-                  pathname === item.href
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white shadow-md"
-                    : "text-foreground hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:text-purple-600 dark:hover:text-purple-400"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <div className="flex-1 flex justify-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="relative px-6 py-2"
+                >
+                  <span className={cn(
+                    "relative z-10 text-sm font-medium transition-colors duration-200",
+                    pathname === item.href ? "text-white" : "text-foreground hover:text-purple-600 dark:hover:text-purple-400"
+                  )}>
+                    {item.label}
+                  </span>
+                  {pathname === item.href && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 rounded-full shadow-md"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </nav>

@@ -1,0 +1,22 @@
+export const drivers = [
+  { id: "VER", name: "Max Verstappen", team: "Red Bull", price: "32.3", points: "55" },
+  { id: "NOR", name: "Lando Norris", team: "McLaren", price: "27.5", points: "55" },
+  { id: "LEC", name: "Charles Leclerc", team: "Ferrari", price: "26.1", points: "55" },
+  { id: "HAM", name: "Lewis Hamilton", team: "Mercedes", price: "25.8", points: "53" },
+  { id: "PIA", name: "Oscar Piastri", team: "McLaren", price: "25.7", points: "10" },
+  { id: "PER", name: "Sergio Perez", team: "Red Bull", price: "25.2", points: "-18" },
+  { id: "RUS", name: "George Russell", team: "Mercedes", price: "25.2", points: "17" },
+  { id: "SAI", name: "Carlos Sainz", team: "Ferrari", price: "24.4", points: "57" },
+  { id: "ALO", name: "Fernando Alonso", team: "Aston Martin", price: "15.3", points: "7" },
+  { id: "MAG", name: "Kevin Magnussen", team: "Haas", price: "14.5", points: "15" },
+  { id: "STR", name: "Lance Stroll", team: "Aston Martin", price: "14.5", points: "6" },
+  { id: "OCO", name: "Esteban Ocon", team: "Alpine", price: "14.4", points: "-25" },
+  { id: "TSU", name: "Yuki Tsunoda", team: "RB", price: "11.9", points: "8" },
+  { id: "GAS", name: "Pierre Gasly", team: "Alpine", price: "11.8", points: "14" },
+  { id: "HUL", name: "Nico Hulkenberg", team: "Haas", price: "11.8", points: "12" },
+  { id: "BOT", name: "Valtteri Bottas", team: "Sauber", price: "10.9", points: "7" },
+  { id: "LAW", name: "Lawson", team: "RB", price: "10.9", points: "-5" },
+  { id: "CHO", name: "Zhou Guanyu", team: "Sauber", price: "9.6", points: "8" },
+  { id: "ALB", name: "Alexander Albon", team: "Williams", price: "8.6", points: "11" },
+  { id: "RIC", name: "Daniel Ricciardo", team: "RB", price: "7.1", points: "-16" }
+];

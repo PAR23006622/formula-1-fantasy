@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Flag, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function NextRace() {
   return (
@@ -40,9 +41,11 @@ export function NextRace() {
                   Lock-in Deadline: May 4, 2024 - 12:00 PM EST
                 </p>
               </div>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
-                Make Your Picks
-              </button>
+              <Link href="/team">
+                <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                  Make Your Picks
+                </button>
+              </Link>
             </div>
           </div>
         </Card>

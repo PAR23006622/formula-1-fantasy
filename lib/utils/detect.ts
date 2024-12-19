@@ -3,8 +3,9 @@
 import { detect } from 'detect-browser';
 
 export const isMobile = () => {
-  if (typeof navigator !== 'undefined') {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const browser = detect();
+  if (browser) {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(browser.ua);
   }
   return false;
 };

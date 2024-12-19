@@ -7,8 +7,48 @@ import { MainNavbar } from "./main-navbar";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { useSession, signOut } from "next-auth/react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
+  const { data: session } = useSession();
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" });
+  };
+
+  const AuthButton = () => {
+    if (session) {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="relative">
+              <User className="w-5 h-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={handleSignOut}>
+              Sign out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+
+    return (
+      <Link href="/auth/login">
+        <Button variant="ghost" size="icon">
+          <User className="w-5 h-5" />
+        </Button>
+      </Link>
+    );
+  };
+
   return (
     <div className="relative">
       {/* Desktop Navigation */}
@@ -27,7 +67,7 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="rounded-r-2xl">
-              <SheetTitle className="text-lg font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
+              <SheetTitle className="text-lg font-bold mb-4">
                 Navigation Menu
               </SheetTitle>
               <nav className="flex flex-col space-y-4">
@@ -59,18 +99,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          <Link href="/sign-in">
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-              <Button 
-                size="icon" 
-                variant="ghost" 
-                className="relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-full w-9 h-9 flex items-center justify-center"
-              >
-                <User className="w-4 h-4 text-white" />
-              </Button>
-            </div>
-          </Link>
+          <AuthButton />
         </div>
       </div>
     </div>

@@ -40,17 +40,17 @@ export function MainNavbar() {
         
         {/* Main navigation bar */}
         <div className={cn(
-          "relative backdrop-blur-sm rounded-full shadow-lg px-6 py-3 transition-all duration-300 bg-background/95",
+          "relative backdrop-blur-sm rounded-full shadow-lg px-4 py-3 transition-all duration-300 bg-background/95",
           isScrolled && "shadow-purple-600/10"
         )}>
-          <div className="hidden md:flex justify-between items-center px-4">
+          <div className="hidden md:flex justify-between items-center">
             <ThemeToggle />
-            <div className="flex-1 flex justify-center space-x-8">
+            <div className="flex-1 flex justify-center items-center space-x-2 lg:space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative px-6 py-2"
+                  className="relative px-3 lg:px-6 py-2 whitespace-nowrap"
                 >
                   <span className={cn(
                     "relative z-10 text-sm font-medium transition-colors duration-200",

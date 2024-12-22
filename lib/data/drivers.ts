@@ -15,7 +15,7 @@ export const drivers = [
   { id: "GAS", name: "Pierre Gasly", team: "Alpine", price: "11.8", points: "14" },
   { id: "HUL", name: "Nico Hulkenberg", team: "Haas", price: "11.8", points: "12" },
   { id: "BOT", name: "Valtteri Bottas", team: "Sauber", price: "10.9", points: "7" },
-  { id: "LAW", name: "Lawson", team: "RB", price: "10.9", points: "-5" },
+  { id: "LAW", name: "Liam Lawson", team: "RB", price: "10.9", points: "-5" },
   { id: "CHO", name: "Zhou Guanyu", team: "Sauber", price: "9.6", points: "8" },
   { id: "ALB", name: "Alexander Albon", team: "Williams", price: "8.6", points: "11" },
   { id: "RIC", name: "Daniel Ricciardo", team: "RB", price: "7.1", points: "-16" }

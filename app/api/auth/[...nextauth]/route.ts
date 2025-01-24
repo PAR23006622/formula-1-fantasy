@@ -1,4 +1,5 @@
-import { NextAuthOptions } from "next-auth";
+// app/api/auth/[...nextauth]/route.ts
+import { NextAuthOptions } from "next-auth"; 
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import NextAuth from "next-auth/next";
@@ -6,6 +7,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
+// Define the NextAuth options
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -79,5 +81,8 @@ export const authOptions: NextAuthOptions = {
   }
 };
 
-const handler = NextAuth(authOptions);
+// This is where you define the NextAuth handler
+export const handler = NextAuth(authOptions);
+
+// Export the handler for both GET and POST requests
 export { handler as GET, handler as POST };

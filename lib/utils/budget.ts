@@ -1,5 +1,5 @@
 import { TeamMember } from '../types/team';
-import { PriceChange, TeamValue } from '../types/budget';
+import { PriceChange } from '../types/budget';
 
 export function calculatePriceChange(
   oldPrice: number,

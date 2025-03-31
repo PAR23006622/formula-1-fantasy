@@ -1,6 +1,13 @@
 import { TeamMember } from '../types/team';
 import { PriceChange } from '../types/budget';
 
+// Add the TeamValue interface
+interface TeamValue {
+  total: number;
+  purchased: number;
+  difference: number;
+}
+
 export function calculatePriceChange(
   oldPrice: number,
   points: number,

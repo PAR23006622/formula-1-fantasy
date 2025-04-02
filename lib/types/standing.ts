@@ -5,6 +5,10 @@ export interface Standing {
   priceChange: string;
 }
 
-export interface DriverStanding extends Standing {}
+export interface DriverStanding extends Standing {
+  team: string;
+}
 
-export interface ConstructorStanding extends Standing {} 
+export interface ConstructorStanding extends Standing {
+  team?: never;
+} 

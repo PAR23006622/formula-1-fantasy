@@ -34,7 +34,7 @@ export const faqData = {
     },
     {
       question: "What is the budget cap?",
-      answer: "The budget cap is $105.0M. You must select your drivers and constructors within this limit."
+      answer: "The budget cap is $100.0M. You must select your drivers and constructors within this limit."
     },
     {
       question: "Can I change my team during a race weekend?",

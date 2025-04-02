@@ -8,6 +8,9 @@ interface RaceCardProps {
 }
 
 export function RaceCard({ race }: RaceCardProps) {
+  // Convert round to number for comparison, but only if it's not "TESTING"
+  const roundNumber = race.round === "TESTING" ? 0 : parseInt(String(race.round), 10);
+
   return (
     <Card className="overflow-hidden bg-card border hover:shadow-lg transition-shadow rounded-[25px]">
       <div className="text-base font-semibold text-purple-600 dark:text-purple-400 p-4 pb-2 text-center">
@@ -22,7 +25,7 @@ export function RaceCard({ race }: RaceCardProps) {
               layout="fill"
               objectFit="cover"
               className="object-center"
-              priority={race.round <= 3}
+              priority={roundNumber <= 3}
             />
           ) : (
             <div className="w-16 h-12 bg-gray-200" />

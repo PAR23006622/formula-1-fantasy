@@ -9,7 +9,7 @@ interface BudgetStore extends BudgetState {
   reset: () => void;
 }
 
-const INITIAL_BUDGET_CAP = 105.0;
+const INITIAL_BUDGET_CAP = 100.0;
 
 export const useBudgetStore = create<BudgetStore>((set, get) => ({
   initialCap: INITIAL_BUDGET_CAP,

@@ -3,6 +3,8 @@
 import { Card } from "@/components/ui/card";
 import { useTeamStore } from "@/lib/store/team-store";
 import { constructors } from "@/lib/data/constructors";
+import { ConstructorStanding } from "@/lib/types/standing";
+import { TrendingUp, TrendingDown } from "lucide-react";
 
 interface ConstructorsListProps {
   onSelect?: () => void;
@@ -16,7 +18,7 @@ export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsLis
     constructor.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddConstructor = (constructor: any) => {
+  const handleAddConstructor = (constructor: ConstructorStanding) => {
     if (selectedConstructors.length >= 2) return;
     if (parseFloat(constructor.price) > budget.remaining) return;
 
@@ -24,7 +26,7 @@ export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsLis
       id: constructor.id,
       name: constructor.name,
       price: constructor.price,
-      points: constructor.points,
+      points: "0", // Using points as it's required by TeamMember type
     });
 
     onSelect?.();
@@ -33,10 +35,17 @@ export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsLis
   const isConstructorSelected = (constructorId: string) =>
     selectedConstructors.some((c) => c.id === constructorId);
 
+  const formatPriceChange = (priceChange: string) => {
+    const value = parseFloat(priceChange);
+    return value > 0 ? `+${priceChange}` : priceChange;
+  };
+
   return (
     <div className="space-y-2 pb-4">
       {filteredConstructors.map((constructor) => {
         const selected = isConstructorSelected(constructor.id);
+        const priceChangeValue = parseFloat(constructor.priceChange);
+        
         return (
           <Card
             key={constructor.id}
@@ -57,9 +66,16 @@ export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsLis
               </div>
               <div className="text-right">
                 <p className="font-semibold">${constructor.price}M</p>
-                <p className="text-sm text-muted-foreground">
-                  {constructor.points} pts
-                </p>
+                <div className="flex items-center justify-end space-x-1">
+                  {priceChangeValue > 0 ? (
+                    <TrendingUp className="w-4 h-4 text-green-500" />
+                  ) : priceChangeValue < 0 ? (
+                    <TrendingDown className="w-4 h-4 text-red-500" />
+                  ) : null}
+                  <p className="text-sm text-muted-foreground">
+                    {formatPriceChange(constructor.priceChange)}M
+                  </p>
+                </div>
               </div>
             </div>
           </Card>

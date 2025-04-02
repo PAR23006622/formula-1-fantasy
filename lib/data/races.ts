@@ -2,171 +2,178 @@ import { Race } from "@/lib/types/race";
 
 export const races: Race[] = [
   {
-    round: 1,
-    country: "Bahrain",
-    name: "Formula 1 Gulf Air Bahrain Grand Prix",
-    date: "1-2 Mar",
-    flagUrl: "https://flagcdn.com/w640/bh.png"
+    round: "TESTING",
+    date: "26-28 Feb",
+    country: "Sakhir",
+    name: "FORMULA 1 ARAMCO PRE-SEASON TESTING 2025",
+    flagUrl: "https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Pre-Season-Testing.jpg"
   },
   {
-    round: 2,
-    country: "Saudi Arabia",
-    name: "Formula 1 STC Saudi Arabian Grand Prix",
-    date: "8-9 Mar",
-    flagUrl: "https://flagcdn.com/w640/sa.png"
-  },
-  {
-    round: 3,
+    round: "1",
+    date: "14-16 Mar",
     country: "Australia",
-    name: "Formula 1 Rolex Australian Grand Prix",
-    date: "23-24 Mar",
+    name: "FORMULA 1 LOUIS VUITTON AUSTRALIAN GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/au.png"
   },
   {
-    round: 4,
-    country: "Japan",
-    name: "Formula 1 MSC Cruises Japanese Grand Prix",
-    date: "6-7 Apr",
-    flagUrl: "https://flagcdn.com/w640/jp.png"
-  },
-  {
-    round: 5,
+    round: "2",
+    date: "21-23 Mar",
     country: "China",
-    name: "Formula 1 Lenovo Chinese Grand Prix",
-    date: "20-21 Apr",
+    name: "FORMULA 1 HEINEKEN CHINESE GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/cn.png"
   },
   {
-    round: 6,
-    country: "United States",
-    name: "Formula 1 Crypto.com Miami Grand Prix",
-    date: "4-5 May",
+    round: "3 - UP NEXT",
+    date: "04-06 Apr",
+    country: "Japan",
+    name: "FORMULA 1 LENOVO JAPANESE GRAND PRIX 2025",
+    flagUrl: "https://flagcdn.com/w640/jp.png"
+  },
+  {
+    round: "4",
+    date: "11-13 Apr",
+    country: "Bahrain",
+    name: "FORMULA 1 GULF AIR BAHRAIN GRAND PRIX 2025",
+    flagUrl: "https://flagcdn.com/w640/bh.png"
+  },
+  {
+    round: "5",
+    date: "18-20 Apr",
+    country: "Saudi Arabia",
+    name: "FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2025",
+    flagUrl: "https://flagcdn.com/w640/sa.png"
+  },
+  {
+    round: "6",
+    date: "02-04 May",
+    country: "Miami",
+    name: "FORMULA 1 CRYPTO.COM MIAMI GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/us.png"
   },
   {
-    round: 7,
-    country: "Italy",
-    name: "Formula 1 MSC Cruises Gran Premio del Made in Italy e Dell'Emilia-Romagna",
-    date: "18-19 May",
+    round: "7",
+    date: "16-18 May",
+    country: "Emilia-Romagna",
+    name: "FORMULA 1 AWS GRAN PREMIO DEL MADE IN ITALY E DELL'EMILIA-ROMAGNA 2025",
     flagUrl: "https://flagcdn.com/w640/it.png"
   },
   {
-    round: 8,
+    round: "8",
+    date: "23-25 May",
     country: "Monaco",
-    name: "Formula 1 Grand Prix de Monaco",
-    date: "25-26 May",
+    name: "FORMULA 1 TAG HEUER GRAND PRIX DE MONACO 2025",
     flagUrl: "https://flagcdn.com/w640/mc.png"
   },
   {
-    round: 9,
-    country: "Canada",
-    name: "Formula 1 Grand Prix du Canada",
-    date: "8-9 Jun",
-    flagUrl: "https://flagcdn.com/w640/ca.png"
-  },
-  {
-    round: 10,
+    round: "9",
+    date: "30-01 May-Jun",
     country: "Spain",
-    name: "Formula 1 Aramco Gran Premio de España",
-    date: "22-23 Jun",
+    name: "FORMULA 1 ARAMCO GRAN PREMIO DE ESPAÑA 2025",
     flagUrl: "https://flagcdn.com/w640/es.png"
   },
   {
-    round: 11,
+    round: "10",
+    date: "13-15 Jun",
+    country: "Canada",
+    name: "FORMULA 1 PIRELLI GRAND PRIX DU CANADA 2025",
+    flagUrl: "https://flagcdn.com/w640/ca.png"
+  },
+  {
+    round: "11",
+    date: "27-29 Jun",
     country: "Austria",
-    name: "Formula 1 Qatar Airways Austrian Grand Prix",
-    date: "29-30 Jun",
+    name: "FORMULA 1 MSC CRUISES AUSTRIAN GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/at.png"
   },
   {
-    round: 12,
+    round: "12",
+    date: "04-06 Jul",
     country: "Great Britain",
-    name: "Formula 1 Qatar Airways British Grand Prix",
-    date: "6-7 Jul",
+    name: "FORMULA 1 QATAR AIRWAYS BRITISH GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/gb.png"
   },
   {
-    round: 13,
-    country: "Hungary",
-    name: "Formula 1 Hungarian Grand Prix",
-    date: "20-21 Jul",
-    flagUrl: "https://flagcdn.com/w640/hu.png"
-  },
-  {
-    round: 14,
+    round: "13",
+    date: "25-27 Jul",
     country: "Belgium",
-    name: "Formula 1 Rolex Belgian Grand Prix",
-    date: "27-28 Jul",
+    name: "FORMULA 1 MOËT & CHANDON BELGIAN GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/be.png"
   },
   {
-    round: 15,
+    round: "14",
+    date: "01-03 Aug",
+    country: "Hungary",
+    name: "FORMULA 1 LENOVO HUNGARIAN GRAND PRIX 2025",
+    flagUrl: "https://flagcdn.com/w640/hu.png"
+  },
+  {
+    round: "15",
+    date: "29-31 Aug",
     country: "Netherlands",
-    name: "Formula 1 Heineken Dutch Grand Prix",
-    date: "24-25 Aug",
+    name: "FORMULA 1 HEINEKEN DUTCH GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/nl.png"
   },
   {
-    round: 16,
+    round: "16",
+    date: "05-07 Sep",
     country: "Italy",
-    name: "Formula 1 Pirelli Gran Premio d'Italia",
-    date: "31 Aug - 1 Sep",
+    name: "FORMULA 1 PIRELLI GRAN PREMIO D’ITALIA 2025",
     flagUrl: "https://flagcdn.com/w640/it.png"
   },
   {
-    round: 17,
+    round: "17",
+    date: "19-21 Sep",
     country: "Azerbaijan",
-    name: "Formula 1 Qatar Airways Azerbaijan Grand Prix",
-    date: "14-15 Sep",
+    name: "FORMULA 1 QATAR AIRWAYS AZERBAIJAN GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/az.png"
   },
   {
-    round: 18,
+    round: "18",
+    date: "03-05 Oct",
     country: "Singapore",
-    name: "Formula 1 Singapore Airlines Singapore Grand Prix",
-    date: "21-22 Sep",
+    name: "FORMULA 1 SINGAPORE AIRLINES SINGAPORE GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/sg.png"
   },
   {
-    round: 19,
+    round: "19",
+    date: "17-19 Oct",
     country: "United States",
-    name: "Formula 1 Pirelli United States Grand Prix",
-    date: "19-20 Oct",
+    name: "FORMULA 1 MSC CRUISES UNITED STATES GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/us.png"
   },
   {
-    round: 20,
+    round: "20",
+    date: "24-26 Oct",
     country: "Mexico",
-    name: "Formula 1 Gran Premio de la Ciudad de México",
-    date: "26-27 Oct",
+    name: "FORMULA 1 GRAN PREMIO DE LA CIUDAD DE MÉXICO 2025",
     flagUrl: "https://flagcdn.com/w640/mx.png"
   },
   {
-    round: 21,
+    round: "21",
+    date: "07-09 Nov",
     country: "Brazil",
-    name: "Formula 1 Lenovo Grande Prêmio de São Paulo",
-    date: "2-3 Nov",
+    name: "FORMULA 1 MSC CRUISES GRANDE PRÊMIO DE SÃO PAULO 2025",
     flagUrl: "https://flagcdn.com/w640/br.png"
   },
   {
-    round: 22,
-    country: "United States",
-    name: "Formula 1 Heineken Silver Las Vegas Grand Prix",
-    date: "23-24 Nov",
+    round: "22",
+    date: "20-22 Nov",
+    country: "Las Vegas",
+    name: "FORMULA 1 HEINEKEN LAS VEGAS GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/us.png"
   },
   {
-    round: 23,
+    round: "23",
+    date: "28-30 Nov",
     country: "Qatar",
-    name: "Formula 1 Qatar Airways Qatar Grand Prix",
-    date: "30 Nov - 1 Dec",
+    name: "FORMULA 1 QATAR AIRWAYS QATAR GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/qa.png"
   },
   {
-    round: 24,
+    round: "24",
+    date: "05-07 Dec",
     country: "Abu Dhabi",
-    name: "Formula 1 Etihad Airways Abu Dhabi Grand Prix",
-    date: "6-8 Dec",
+    name: "FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2025",
     flagUrl: "https://flagcdn.com/w640/ae.png"
   }
 ];

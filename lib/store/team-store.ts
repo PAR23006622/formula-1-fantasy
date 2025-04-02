@@ -9,7 +9,7 @@ interface TeamStore extends TeamState {
   resetTeam: () => void;
 }
 
-const INITIAL_BUDGET = 105.0;
+const INITIAL_BUDGET = 100.0;
 
 export const useTeamStore = create<TeamStore>((set) => ({
   drivers: [],

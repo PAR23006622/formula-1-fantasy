@@ -3,6 +3,8 @@
 import { Card } from "@/components/ui/card";
 import { useTeamStore } from "@/lib/store/team-store";
 import { drivers } from "@/lib/data/drivers";
+import { TrendingUp, TrendingDown } from "lucide-react";
+import { DriverStanding } from "@/lib/types/standing";
 
 interface DriversListProps {
   onSelect?: () => void;
@@ -13,20 +15,18 @@ export function DriversList({ onSelect, searchQuery = "" }: DriversListProps) {
   const { addDriver, drivers: selectedDrivers, budget } = useTeamStore();
 
   const filteredDrivers = drivers.filter((driver) =>
-    driver.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    driver.team.toLowerCase().includes(searchQuery.toLowerCase())
+    driver.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddDriver = (driver: any) => {
+  const handleAddDriver = (driver: DriverStanding) => {
     if (selectedDrivers.length >= 5) return;
     if (parseFloat(driver.price) > budget.remaining) return;
     
     addDriver({
       id: driver.id,
       name: driver.name,
-      team: driver.team,
       price: driver.price,
-      points: driver.points,
+      points: "0"
     });
 
     onSelect?.();
@@ -35,10 +35,17 @@ export function DriversList({ onSelect, searchQuery = "" }: DriversListProps) {
   const isDriverSelected = (driverId: string) =>
     selectedDrivers.some((d) => d.id === driverId);
 
+  const formatPriceChange = (priceChange: string) => {
+    const value = parseFloat(priceChange);
+    return value > 0 ? `+${priceChange}` : priceChange;
+  };
+
   return (
     <div className="space-y-2 pb-4">
       {filteredDrivers.map((driver) => {
         const selected = isDriverSelected(driver.id);
+        const priceChangeValue = parseFloat(driver.priceChange);
+
         return (
           <Card
             key={driver.id}
@@ -56,13 +63,19 @@ export function DriversList({ onSelect, searchQuery = "" }: DriversListProps) {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-semibold">{driver.name}</h3>
-                <p className="text-sm text-muted-foreground">{driver.team}</p>
               </div>
               <div className="text-right">
                 <p className="font-semibold">${driver.price}M</p>
-                <p className="text-sm text-muted-foreground">
-                  {driver.points} pts
-                </p>
+                <div className="flex items-center justify-end space-x-1">
+                  {priceChangeValue > 0 ? (
+                    <TrendingUp className="w-4 h-4 text-green-500" />
+                  ) : priceChangeValue < 0 ? (
+                    <TrendingDown className="w-4 h-4 text-red-500" />
+                  ) : null}
+                  <p className="text-sm text-muted-foreground">
+                    {formatPriceChange(driver.priceChange)}M
+                  </p>
+                </div>
               </div>
             </div>
           </Card>

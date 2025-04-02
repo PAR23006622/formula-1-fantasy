@@ -1,7 +1,7 @@
 export interface Race {
-  round: number;
+  round: string | number;
+  date: string;
   country: string;
   name: string;
-  date: string;
-  flagUrl: string;
+  flagUrl: string | null;
 }

@@ -15,14 +15,18 @@ export function RaceCard({ race }: RaceCardProps) {
       </div>
       <div className="relative w-full h-48 px-4">
         <div className="relative w-full h-full border border-gray-200 dark:border-gray-800 rounded-[25px] overflow-hidden">
-          <Image
-            src={race.flagUrl}
-            alt={`${race.country} flag`}
-            layout="fill"
-            objectFit="cover"
-            className="object-center"
-            priority={race.round <= 3}
-          />
+          {race.flagUrl ? (
+            <Image
+              src={race.flagUrl}
+              alt={`${race.country} flag`}
+              layout="fill"
+              objectFit="cover"
+              className="object-center"
+              priority={race.round <= 3}
+            />
+          ) : (
+            <div className="w-16 h-12 bg-gray-200" />
+          )}
         </div>
       </div>
       

@@ -9,7 +9,7 @@ export function RaceCalendarContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
-            2024 Race Calendar
+            2025 Race Calendar
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Follow the complete Formula 1 season with all race dates and venues

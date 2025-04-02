@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrape": "node test-scraper.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -38,6 +39,7 @@
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@sparticuz/chromium-min": "^133.0.0",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/supabase-js": "^2.39.8",
     "@types/bcryptjs": "^2.4.6",
@@ -61,7 +63,8 @@
     "next-themes": "^0.3.0",
     "nodemailer": "^6.9.12",
     "postcss": "^8.5.1",
-    "puppeteer": "^24.4.0",
+    "puppeteer": "^24.5.0",
+    "puppeteer-core": "^24.5.0",
     "react": "18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "18.2.0",

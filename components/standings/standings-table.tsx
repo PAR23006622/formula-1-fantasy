@@ -13,6 +13,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 import { drivers } from "@/lib/data/drivers";
 import { constructors } from "@/lib/data/constructors";
 import { useState } from "react";
+import { DriverStanding } from "@/lib/types/standing";
 
 export function StandingsTable() {
   const [showingConstructors, setShowingConstructors] = useState(false);
@@ -51,6 +52,7 @@ export function StandingsTable() {
               <TableRow className="bg-muted/50">
                 <TableHead className="w-16">Pos</TableHead>
                 <TableHead>{showingConstructors ? "Constructor" : "Driver"}</TableHead>
+                {!showingConstructors && <TableHead>Team</TableHead>}
                 <TableHead className="text-right">Price</TableHead>
                 <TableHead className="text-right">Price Change</TableHead>
               </TableRow>
@@ -60,6 +62,9 @@ export function StandingsTable() {
                 <TableRow key={item.id} className="hover:bg-muted/50">
                   <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>{item.name}</TableCell>
+                  {!showingConstructors && (
+                    <TableCell>{(item as DriverStanding).team}</TableCell>
+                  )}
                   <TableCell className="text-right">${item.price}M</TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end space-x-1">

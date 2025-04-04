@@ -1,4 +1,4 @@
-import { scrapeConstructorStandings, writeConstructorsFile, scrapeDriverStandings, writeDriversFile, scrapeF1Calendar, writeRacesFile } from '@/lib/utils/scraping';
+import { scrapeConstructorStandings, writeConstructorsFile, scrapeDriverStandings, writeDriversFile, scrapeF1Calendar, writeRacesFile, scrapeScheduleData, writeRaceLockInFile } from '@/lib/utils/scraping';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,13 +33,18 @@ export async function GET(req: Request) {
     const calendarData = await scrapeF1Calendar();
     await writeRacesFile(calendarData);
 
+    console.log('Scraping race schedule and qualifying data...');
+    const scheduleData = await scrapeScheduleData();
+    await writeRaceLockInFile(scheduleData);
+
     return new Response(JSON.stringify({ 
       success: true,
       message: 'All data updated successfully',
       data: {
         constructors: constructorData,
         drivers: driverData,
-        calendar: calendarData
+        calendar: calendarData,
+        schedule: scheduleData
       }
     }), {
       headers: { 'Content-Type': 'application/json' },

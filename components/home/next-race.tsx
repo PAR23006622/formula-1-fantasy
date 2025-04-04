@@ -8,20 +8,51 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getNextRace } from '@/lib/utils/race-data';
 import { Race } from "@/lib/types/race";
+import { RaceLockIn } from "@/lib/types/team-lock-in";
 
 export function NextRace() {
   const router = useRouter();
   const [nextRace, setNextRace] = useState<Race | null>(null);
+  const [raceData, setRaceData] = useState<RaceLockIn | null>(null);
   const [loading, setLoading] = useState(true);
+  const [countdown, setCountdown] = useState<string>('');
 
   useEffect(() => {
-    async function fetchNextRace() {
+    async function fetchData() {
       const race = await getNextRace();
+      const response = await fetch('/api/team-lock-in');
+      const data = await response.json();
       setNextRace(race);
+      setRaceData(data.raceLockInData);
       setLoading(false);
     }
-    fetchNextRace();
+    fetchData();
   }, []);
+
+  // Add countdown timer effect
+  useEffect(() => {
+    if (!raceData?.lockTime) return;
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const lockTime = new Date(raceData.lockTime).getTime();
+      const distance = lockTime - now;
+
+      if (distance < 0) {
+        setCountdown('LOCKED');
+        clearInterval(timer);
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [raceData?.lockTime]);
 
   const handleClick = () => {
     router.push('/team');
@@ -30,6 +61,28 @@ export function NextRace() {
   if (loading) {
     return <div>Loading next race information...</div>;
   }
+
+  // Format the race time from the RACE session
+  const raceSession = raceData?.upcomingRace?.sessions.find(session => session.type === 'RACE');
+  const raceDateTime = raceSession?.dateTime ? new Date(raceSession.dateTime).toLocaleString('en-US', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  }) : 'TBD';
+
+  // Format the lock-in deadline
+  const lockInDeadline = raceData?.lockTime ? 
+    new Date(raceData.lockTime).toLocaleString('en-US', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    }) : 'TBD';
 
   return (
     <div className="py-8 sm:py-16 bg-muted">
@@ -49,7 +102,9 @@ export function NextRace() {
             <div className="space-y-4 sm:space-y-6">
               <div className="flex items-center space-x-3">
                 <Flag className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-                <h3 className="text-2xl font-bold text-foreground">{nextRace?.name || "Loading..."}</h3>
+                <h3 className="text-2xl font-bold text-foreground">
+                  {raceData?.upcomingRace?.title || nextRace?.name || "Loading..."}
+                </h3>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
@@ -58,12 +113,16 @@ export function NextRace() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Clock className="h-5 w-5 text-muted-foreground" />
-                  <span className="text-foreground">Race Time TBD</span>
+                  <span className="text-foreground">Race Time: {raceDateTime}</span>
                 </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-3 sm:p-4 rounded-lg">
                 <p className="text-purple-700 dark:text-purple-300 font-medium">
-                  Lock-in Deadline: {nextRace?.date ? new Date(nextRace.date).toLocaleDateString() : "TBD"}
+                  Lock-in Deadline: {lockInDeadline}
+                  <br />
+                  <span className="text-sm mt-1 block">
+                    Time Remaining: {countdown}
+                  </span>
                 </p>
               </div>
               <Button 

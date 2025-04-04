@@ -4,13 +4,21 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   try {
-    // Verify the request is from Vercel Cron
+    // More robust authorization check
     const authHeader = req.headers.get('authorization');
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      return new Response('Unauthorized', { status: 401 });
+    const expectedAuth = `Bearer ${process.env.CRON_SECRET}`;
+    
+    console.log('Checking authorization...');
+    
+    if (!authHeader || authHeader !== expectedAuth) {
+      console.log('Authorization failed');
+      return new Response('Unauthorized', { 
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    console.log('Starting cron job for F1 Fantasy data updates...');
+    console.log('Authorization successful, starting cron job...');
 
     // Run scraping operations one at a time to avoid memory issues
     console.log('Scraping constructor standings...');

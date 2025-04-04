@@ -12,23 +12,27 @@ interface DriversListProps {
 }
 
 export function DriversList({ onSelect, searchQuery = "" }: DriversListProps) {
-  const { addDriver, drivers: selectedDrivers, budget } = useTeamStore();
+  const { addDriver, removeDriver, drivers: selectedDrivers, budget } = useTeamStore();
 
   const filteredDrivers = drivers.filter((driver) =>
     driver.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddDriver = (driver: DriverStanding) => {
-    if (selectedDrivers.length >= 5) return;
-    if (parseFloat(driver.price) > budget.remaining) return;
-    
-    addDriver({
-      id: driver.id,
-      name: driver.name,
-      price: driver.price,
-      points: "0"
-    });
-
+  const handleDriverClick = (driver: DriverStanding) => {
+    const isSelected = isDriverSelected(driver.id);
+    if (isSelected) {
+      removeDriver(driver.id);
+    } else {
+      if (selectedDrivers.length >= 5) return;
+      if (parseFloat(driver.price) > budget.remaining) return;
+      
+      addDriver({
+        id: driver.id,
+        name: driver.name,
+        price: driver.price,
+        points: "0"
+      });
+    }
     onSelect?.();
   };
 
@@ -51,14 +55,14 @@ export function DriversList({ onSelect, searchQuery = "" }: DriversListProps) {
             key={driver.id}
             className={`p-4 cursor-pointer transition-colors ${
               selected
-                ? "bg-purple-100 dark:bg-purple-900/20"
+                ? "bg-purple-100 dark:bg-purple-900/20 hover:bg-purple-200 dark:hover:bg-purple-900/30"
                 : "hover:bg-muted/50"
             } ${
-              parseFloat(driver.price) > budget.remaining && !selected
+              !selected && parseFloat(driver.price) > budget.remaining
                 ? "opacity-50 cursor-not-allowed"
                 : ""
             }`}
-            onClick={() => !selected && handleAddDriver(driver)}
+            onClick={() => handleDriverClick(driver)}
           >
             <div className="flex justify-between items-center">
               <div>

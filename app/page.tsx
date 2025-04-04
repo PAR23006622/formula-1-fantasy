@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      {/* Add padding top to account for fixed navbar */}
       <main className="flex-grow pt-32">
         <HeroSection />
         <NextRace />

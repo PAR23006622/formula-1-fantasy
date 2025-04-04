@@ -12,23 +12,27 @@ interface ConstructorsListProps {
 }
 
 export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsListProps) {
-  const { addConstructor, constructors: selectedConstructors, budget } = useTeamStore();
+  const { addConstructor, removeConstructor, constructors: selectedConstructors, budget } = useTeamStore();
 
   const filteredConstructors = constructors.filter((constructor) =>
     constructor.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddConstructor = (constructor: ConstructorStanding) => {
-    if (selectedConstructors.length >= 2) return;
-    if (parseFloat(constructor.price) > budget.remaining) return;
+  const handleConstructorClick = (constructor: ConstructorStanding) => {
+    const isSelected = isConstructorSelected(constructor.id);
+    if (isSelected) {
+      removeConstructor(constructor.id);
+    } else {
+      if (selectedConstructors.length >= 2) return;
+      if (parseFloat(constructor.price) > budget.remaining) return;
 
-    addConstructor({
-      id: constructor.id,
-      name: constructor.name,
-      price: constructor.price,
-      points: "0", // Using points as it's required by TeamMember type
-    });
-
+      addConstructor({
+        id: constructor.id,
+        name: constructor.name,
+        price: constructor.price,
+        points: "0",
+      });
+    }
     onSelect?.();
   };
 
@@ -51,14 +55,14 @@ export function ConstructorsList({ onSelect, searchQuery = "" }: ConstructorsLis
             key={constructor.id}
             className={`p-4 cursor-pointer transition-colors ${
               selected
-                ? "bg-purple-100 dark:bg-purple-900/20"
+                ? "bg-purple-100 dark:bg-purple-900/20 hover:bg-purple-200 dark:hover:bg-purple-900/30"
                 : "hover:bg-muted/50"
             } ${
-              parseFloat(constructor.price) > budget.remaining && !selected
+              !selected && parseFloat(constructor.price) > budget.remaining
                 ? "opacity-50 cursor-not-allowed"
                 : ""
             }`}
-            onClick={() => !selected && handleAddConstructor(constructor)}
+            onClick={() => handleConstructorClick(constructor)}
           >
             <div className="flex justify-between items-center">
               <div>

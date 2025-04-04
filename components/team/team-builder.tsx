@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Trophy, X } from "lucide-react";
 import { useTeamStore } from "@/lib/store/team-store";
+import { useToast } from "@/components/ui/use-toast";
+import { useUser } from '@auth0/nextjs-auth0';
 
 interface TeamBuilderProps {
   onAddDriver: () => void;
@@ -12,6 +14,53 @@ interface TeamBuilderProps {
 
 export function TeamBuilder({ onAddDriver, onAddConstructor }: TeamBuilderProps) {
   const { drivers, constructors, budget, resetTeam, removeDriver, removeConstructor } = useTeamStore();
+  const { toast } = useToast();
+  const { user } = useUser();
+
+  const handleSaveTeam = async () => {
+    if (drivers.length !== 5 || constructors.length !== 2) {
+      toast({
+        variant: "destructive",
+        title: "Cannot save team",
+        description: "Please select 5 drivers and 2 constructors.",
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/save-team', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user?.sub,
+          team: {
+            drivers,
+            constructors,
+            budget
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save team');
+      }
+
+      toast({
+        variant: "default",
+        title: "Team saved",
+        description: "Your team has been saved successfully.",
+        className: "bg-gradient-to-r from-purple-600 to-pink-600 text-white",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not save your team. Please try again.",
+      });
+    }
+  };
 
   return (
     <Card className="p-6">
@@ -20,7 +69,16 @@ export function TeamBuilder({ onAddDriver, onAddConstructor }: TeamBuilderProps)
           <h2 className="text-2xl font-bold">Your Team</h2>
           <div className="space-x-2">
             <Button variant="outline" size="sm" onClick={resetTeam}>Reset</Button>
-            <Button size="sm" className="bg-gradient-to-r from-purple-600 to-pink-600">
+            <Button 
+              size="sm" 
+              className={`bg-gradient-to-r from-purple-600 to-pink-600 ${
+                drivers.length !== 5 || constructors.length !== 2 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:opacity-90'
+              }`}
+              onClick={handleSaveTeam}
+              disabled={drivers.length !== 5 || constructors.length !== 2}
+            >
               Save Team
             </Button>
           </div>

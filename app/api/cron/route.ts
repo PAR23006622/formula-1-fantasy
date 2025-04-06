@@ -1,26 +1,22 @@
-import { scrapeConstructorStandings, writeConstructorsFile, scrapeDriverStandings, writeDriversFile, scrapeF1Calendar, writeRacesFile, scrapeScheduleData, writeRaceLockInFile } from '@/lib/utils/scraping';
+import { 
+  scrapeConstructorStandings, 
+  writeConstructorsFile, 
+  scrapeDriverStandings, 
+  writeDriversFile, 
+  scrapeF1Calendar, 
+  writeRacesFile, 
+  scrapeScheduleData, 
+  writeRaceLockInFile,
+  closeBrowser 
+} from '@/lib/utils/scraping';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   try {
-    // More robust authorization check
-    const authHeader = req.headers.get('authorization');
-    const expectedAuth = `Bearer ${process.env.CRON_SECRET}`;
+    console.log('Starting cron job for all scrapers...');
     
-    console.log('Checking authorization...');
-    
-    if (!authHeader || authHeader !== expectedAuth) {
-      console.log('Authorization failed');
-      return new Response('Unauthorized', { 
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    console.log('Authorization successful, starting cron job...');
-
-    // Run scraping operations one at a time to avoid memory issues
+    // Run all scrapers in sequence
     console.log('Scraping constructor standings...');
     const constructorData = await scrapeConstructorStandings();
     await writeConstructorsFile(constructorData);
@@ -33,9 +29,9 @@ export async function GET(req: Request) {
     const calendarData = await scrapeF1Calendar();
     await writeRacesFile(calendarData);
 
-    console.log('Scraping race schedule and qualifying data...');
+    console.log('Scraping race schedule...');
     const scheduleData = await scrapeScheduleData();
-    await writeRaceLockInFile(scheduleData);
+    const raceLockInData = await writeRaceLockInFile(scheduleData);
 
     return new Response(JSON.stringify({ 
       success: true,
@@ -44,7 +40,7 @@ export async function GET(req: Request) {
         constructors: constructorData,
         drivers: driverData,
         calendar: calendarData,
-        schedule: scheduleData
+        raceLockIn: raceLockInData
       }
     }), {
       headers: { 'Content-Type': 'application/json' },
@@ -59,5 +55,7 @@ export async function GET(req: Request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
+  } finally {
+    await closeBrowser();
   }
 } 

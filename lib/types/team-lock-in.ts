@@ -14,7 +14,6 @@ export interface RaceLockIn {
   qualifyingDate: string;
   lockTime: string;
   isLocked: boolean;
-  timeUntilLock: number;
   lastUpdated: string;
   upcomingRace: UpcomingRace;
 }

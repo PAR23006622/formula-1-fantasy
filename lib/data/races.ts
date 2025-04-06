@@ -23,7 +23,7 @@ export const races: Race[] = [
     flagUrl: "https://flagcdn.com/w640/cn.png"
   },
   {
-    round: "3 - UP NEXT",
+    round: "3 - RACE REVIEW",
     date: "04-06 Apr",
     country: "Japan",
     name: "FORMULA 1 LENOVO JAPANESE GRAND PRIX 2025",

@@ -3,11 +3,11 @@ import { RaceLockIn } from '../types/team-lock-in';
 export const raceLockIn: RaceLockIn = {
   "qualifyingDate": "2025-04-05T06:00:00.000Z",
   "lockTime": "2025-04-05T05:00:00.000Z",
-  "isLocked": false,
-  "lastUpdated": "2025-04-04T14:58:56.146Z",
+  "isLocked": true,
+  "lastUpdated": "2025-04-06T21:56:06.153Z",
   "upcomingRace": {
     "title": "Japanese GP",
-    "isUpcoming": true,
+    "isUpcoming": false,
     "isOpen": true,
     "sessions": [
       {
